@@ -313,6 +313,14 @@
             return this;
         };
 
+	chart.dataColumn = function (t,d) {
+            !columns && createColumns();
+            for (i = 0; i < d.length; i++) {
+                columns[i] && d[i] && columns[i].data(t, d[i]);
+            }
+            return this;
+	};
+
         return chart;
     };
     

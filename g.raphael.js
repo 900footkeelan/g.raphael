@@ -50,8 +50,8 @@ Raphael.el.popup = function (dir, size, x, y) {
     cw = Math.max(bb.width / 2 - size, 0);
     ch = Math.max(bb.height / 2 - size, 0);
 
-    this.translate(x - bb.x - (center ? bb.width / 2 : 0), y - bb.y - (center ? bb.height / 2 : 0));
-    bb = this.getBBox();
+//    this.translate(x - bb.x - (center ? bb.width / 2 : 0), y - bb.y - (center ? bb.height / 2 : 0));
+//    bb = this.getBBox();
 
     var paths = {
         up: [
@@ -425,7 +425,8 @@ Raphael.el.blob = function (angle, x, y) {
         ].join(",")
     });
 
-    this.translate(cx - bb.x - bb.width / 2, cy - bb.y - bb.height / 2);
+//    this.translate(cx - bb.x - bb.width / 2, cy - bb.y - bb.height / 2);
+    this.translate(cx - x, cy - y);
 
     return p.insertBefore(this.node ? this : this[0]);
 };
@@ -480,7 +481,7 @@ Raphael.fn.popup = function (x, y, text, dir, size) {
     var set = this.set();
 
     text = this.text(x, y, text).attr(Raphael.g.txtattr);
-    return set.push(text.popup(dir, size), text);
+    return set.push(text.popup(dir, size, x, y), text);
 };
 
 /*\
@@ -577,7 +578,7 @@ Raphael.fn.blob = function (x, y, text, angle) {
     var set = this.set();
 
     text = this.text(x, y, text).attr(Raphael.g.txtattr);
-    return set.push(text.blob(angle), text);
+    return set.push(text.blob(angle, x, y), text);
 };
 
 /**
